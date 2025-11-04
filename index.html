@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelican-VL 1.0</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .affiliation {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .contact {
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+        .date {
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2d2d2d;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .btn:hover {
+            background-color: #4a4a4a;
+        }
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        /* 新增Abstract部分样式 */
+        .abstract-section {
+            margin-top: 4rem;
+            text-align: justify;
+        }
+        .abstract-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .abstract-section img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .abstract-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* 雷达图部分样式 */
+        .radar-chart-section {
+            margin-top: 4rem;
+        }
+        .radar-chart-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .chart-container img {
+            max-width: 45%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 实验设置部分样式 */
+        .experimental-setup-section {
+            margin-top: 4rem;
+        }
+        .experimental-setup-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .experimental-setup-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 模型表现视频部分样式 */
+        .model-performance-section {
+            margin-top: 4rem;
+        }
+        .model-performance-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .video-container video {
+            max-width: 23%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* BibTex部分样式 */
+        .bibtex-section {
+            margin-top: 4rem;
+            text-align: left;
+        }
+        .bibtex-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .bibtex-box {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+        .bibtex-label {
+            display: inline-block;
+            background-color: #0059b3;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence</h1>
+    <div class="affiliation">
+        WFMSystemGroup<br>
+        Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br>
+    </div>
+    <div class="contact">
+        {vito.dai, jason.ju}@x-humanoid.com
+    </div>
+    <div class="button-group">
+        <a href="#" class="btn"><i class="fas fa-file-pdf"></i> Arxiv</a>
+        <a href="#" class="btn"><i class="fas fa-code"></i> Code</a>
+        <a href="#" class="btn"><i class="fas fa-database"></i> Dataset</a>
+        <a href="#" class="btn"><i class="fas fa-trophy"></i> Benchmark</a>
+        <a href="#" class="btn"><i class="fas fa-desktop"></i> Demo</a>
+    </div>
+
+    <!-- Abstract部分 -->
+    <div class="abstract-section">
+        <h2>Abstract</h2>
+        <img src="20251104-154827.jpg" alt="Pelican-VL 1.0 Demo">
+        <p>Recent advancements in Vision-Language Models (VLMs) have unlocked remarkable capabilities for digital-world perception. However, the translation from digital perception to embodied cognition remains a fundamental challenge. General purpose VLMs, trained on internet-scale data, exhibit critical deficits in reasoning about complex spatial relationships, inferring temporal-causal chains, and making valid judgments about real-world interactive properties.</p>
+        <p>This report presents Pelican-VL 1.0, a new family of open-source embodied brain models with parameter scales ranging from 7 billion to 72 billion. Our explicit mission is clearly stated as: To embed powerful intelligence into various embodiments. Pelican-VL 1.0 is currently the largest-scale open-source embodied multimodal brain model. Its core advantage lies in the in-depth integration of data power and intelligent adaptive learning mechanisms. Specifically, metaloop distilled a high-quality dataset from a raw dataset containing 4+ billion tokens. Pelican-VL 1.0 is trained on a large-scale cluster of 1000+ A800 GPUs, consuming over 50k+ A800 GPU-hours per checkpoint. This translates to a 20.3% performance uplift from its base model and outperforms 100B-level open-source counterparts by 10.6%, placing it on par with leading proprietary systems on well-known embodied benchmarks.</p>
+        <p>We establish a novel framework, DPPO (Deliberate Practice Policy Optimization), inspired by human metacognition to train Pelican-VL 1.0. We operationalize this as a metaloop that teaches the AI to practice deliberately, which is a RL-Refine → Diagnose → SFT loop. This loop employs Reinforcement Learning (RL) in two key roles: (1) for skill refinement (aligning the reference policy with target policy), and (2) for autonomous weakness detection (via rollouts). The hard cases discovered from these rollouts are then refined for Supervised Fine-Tuning (SFT). This SFT process facilitates embodied competence expansion (widening the policy’s distribution). Furthermore, we provide a theoretical interpretation of the cyclic procedure from the perspective of unified preference learning. Our AI infrastructure uniquely enables our framework to support 72B scale, mixed-modal RL training with long-video data.</p>
+        <p>We validate Pelican-VL 1.0 through extensive real-world experiments on tasks including: (1) contact-rich tactile manipulation, where it is the first VLM to close the sensorimotor loop by predicting and continuously refining grasp force, (2) task-oriented affordance reasoning for pick-and-place, and (3) industry-first long-horizon planning achieved by a multi-agent system with a unified one brain controlling diverse robotic platforms. We are open-sourcing inference codebase and 7B&72B base model checkpoints. We hope to empower the community to train and customize their own embodied brain models.</p>
+    </div>
+
+    <!-- 雷达图部分 -->
+    <div class="radar-chart-section">
+        <h2>Benchmark Performance</h2>
+        <div class="chart-container">
+            <img src="C:\Users\A\Desktop\demo\200B.jpg" alt="200B Model Radar Chart">
+            <img src="C:\Users\A\Desktop\demo\100B.jpg" alt="100B Model Radar Chart">
+        </div>
+    </div>
+
+    <!-- 实验设置部分 -->
+    <div class="experimental-setup-section">
+        <h2>Performance Evolution Trajectory Across Metaloop Training</h2>
+        <img src="Evolution.png" alt="Experimental Evolution">
+    </div>
+
+    <!-- 模型表现视频部分 -->
+    <div class="model-performance-section">
+        <h2>Downstream Applications</h2>
+        <div class="video-container">
+            <video src="sponge_wipe.mp4" controls muted></video>
+            <video src="blue_balloon.mp4" controls muted></video>
+            <video src="chips.mp4" controls muted></video>
+            <video src="soft_labobo.mp4" controls muted></video>
+        </div>
+    </div>
+
+    <!-- BibTex部分 -->
+    <div class="bibtex-section">
+        <span class="bibtex-label">BibTex</span>
+        <div class="bibtex-box">
+@misc{zhang2025pelicanvl10foundationbrain,
+      title={Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence}, 
+      author={Yi Zhang and Che Liu and Xiancong Ren and Hanchu Ni and Shuai Zhang and Zeyuan Ding and Jiayu Hu and Hanzhe Shan and Zhenwei Niu and Zhaoyang Liu and Yue Zhao and Junbo Qi and Qinfan Zhang and Dengjie Li and Yidong Wang and Jiachen Luo and Yong Dai and Jian Tang and Xiaozhu Ju},
+      year={2025},
+      eprint={2511.00108},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2511.00108}, 
+}
+        </div>
+    </div>
+</body>
+</html>
