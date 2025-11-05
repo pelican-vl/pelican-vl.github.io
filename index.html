@@ -25,10 +25,6 @@
             margin: 1rem 0;
             font-size: 1rem;
         }
-        .date {
-            margin: 1rem 0;
-            font-size: 1rem;
-        }
         .button-group {
             display: flex;
             flex-wrap: wrap;
@@ -78,7 +74,7 @@
             margin-bottom: 1rem;
         }
 
-        /* 雷达图部分样式 */
+        /* 雷达图部分样式（调整为4张图一排且大小对齐） */
         .radar-chart-section {
             margin-top: 4rem;
         }
@@ -90,15 +86,29 @@
         }
         .chart-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap; /* 禁止换行，强制一排显示 */
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem; /* 统一间距 */
+            overflow-x: auto; /* 小屏幕横向滚动适配 */
+            padding-bottom: 1rem;
         }
-        .chart-container img {
-            max-width: 45%;
+        .chart-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 23%; /* 4张图均分宽度 */
+        }
+        .chart-item img {
+            max-width: 100%;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 0.8rem;
+        }
+        .chart-item p {
+            line-height: 1.5;
+            text-align: center;
+            font-size: 0.85rem;
         }
 
         /* 实验设置部分样式 */
@@ -116,6 +126,11 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .experimental-setup-section p {
+            margin-top: 1rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
         /* 模型表现视频部分样式 */
@@ -141,16 +156,20 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* BibTex部分样式 */
-        .bibtex-section {
+        /* Citation部分样式（标题靠左） */
+        .citation-section {
             margin-top: 4rem;
             text-align: left;
         }
-        .bibtex-section h2 {
+        .citation-section h2 {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            text-align: center;
+            text-align: left;
+        }
+        .citation-note {
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
         .bibtex-box {
             background-color: #f0f0f0;
@@ -160,13 +179,51 @@
             font-family: 'Courier New', Courier, monospace;
             white-space: pre-wrap;
         }
-        .bibtex-label {
-            display: inline-block;
-            background-color: #0059b3;
+
+        /* 新增：横向滚动图片容器 + 滑动按钮样式 */
+        .scroll-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        .scroll-btn {
+            background-color: #2d2d2d;
             color: white;
-            padding: 0.6rem 1rem;
-            border-radius: 4px;
-            font-weight: bold;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0.5rem;
+        }
+        .scroll-content {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 0.5rem;
+            width: 100%;
+        }
+        .scroll-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 30%;
+        }
+        .scroll-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .scroll-item p {
+            font-weight: 500;
+            margin-top: 0.5rem;
+            text-align: center;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -187,23 +244,44 @@
         <a href="#" class="btn"><i class="fas fa-trophy"></i> Benchmark</a>
         <a href="#" class="btn"><i class="fas fa-desktop"></i> Demo</a>
     </div>
-
     <!-- Abstract部分 -->
     <div class="abstract-section">
         <h2>Abstract</h2>
         <img src="20251104-154827.jpg" alt="Pelican-VL 1.0 Demo">
-        <p>Recent advancements in Vision-Language Models (VLMs) have unlocked remarkable capabilities for digital-world perception. However, the translation from digital perception to embodied cognition remains a fundamental challenge. General purpose VLMs, trained on internet-scale data, exhibit critical deficits in reasoning about complex spatial relationships, inferring temporal-causal chains, and making valid judgments about real-world interactive properties.</p>
-        <p>This report presents Pelican-VL 1.0, a new family of open-source embodied brain models with parameter scales ranging from 7 billion to 72 billion. Our explicit mission is clearly stated as: To embed powerful intelligence into various embodiments. Pelican-VL 1.0 is currently the largest-scale open-source embodied multimodal brain model. Its core advantage lies in the in-depth integration of data power and intelligent adaptive learning mechanisms. Specifically, metaloop distilled a high-quality dataset from a raw dataset containing 4+ billion tokens. Pelican-VL 1.0 is trained on a large-scale cluster of 1000+ A800 GPUs, consuming over 50k+ A800 GPU-hours per checkpoint. This translates to a 20.3% performance uplift from its base model and outperforms 100B-level open-source counterparts by 10.6%, placing it on par with leading proprietary systems on well-known embodied benchmarks.</p>
-        <p>We establish a novel framework, DPPO (Deliberate Practice Policy Optimization), inspired by human metacognition to train Pelican-VL 1.0. We operationalize this as a metaloop that teaches the AI to practice deliberately, which is a RL-Refine → Diagnose → SFT loop. This loop employs Reinforcement Learning (RL) in two key roles: (1) for skill refinement (aligning the reference policy with target policy), and (2) for autonomous weakness detection (via rollouts). The hard cases discovered from these rollouts are then refined for Supervised Fine-Tuning (SFT). This SFT process facilitates embodied competence expansion (widening the policy’s distribution). Furthermore, we provide a theoretical interpretation of the cyclic procedure from the perspective of unified preference learning. Our AI infrastructure uniquely enables our framework to support 72B scale, mixed-modal RL training with long-video data.</p>
-        <p>We validate Pelican-VL 1.0 through extensive real-world experiments on tasks including: (1) contact-rich tactile manipulation, where it is the first VLM to close the sensorimotor loop by predicting and continuously refining grasp force, (2) task-oriented affordance reasoning for pick-and-place, and (3) industry-first long-horizon planning achieved by a multi-agent system with a unified one brain controlling diverse robotic platforms. We are open-sourcing inference codebase and 7B&72B base model checkpoints. We hope to empower the community to train and customize their own embodied brain models.</p>
+        <p> This report presents Pelican-VL 1.0, a new family of open-source embodied brain models with parameter scales ranging
+ from 7billion to 72 billion. Our explicit mission is clearly stated as: To embed powerful intelligence into various embodiments.
+ Pelican-VL 1.0 is currently the largest-scale open-source embodied multimodal brain model. Its core advantage lies in the
+ in-depth integration of data power and intelligent adaptive learning mechanisms. Specifically, metaloop distilled a high-quality
+ dataset from a raw dataset containing 4+ billion tokens. Pelican-VL 1.0 is trained on a large-scale cluster of 1000+ A800 GPUs,
+ consuming over 50k+ A800 GPU-hours per checkpoint. This translates to a 20.3% performance uplift from its base model and
+ outperforms 100B-level open-source counterparts by 10.6%, placing it on par with leading proprietary systems on well-known
+ embodied benchmarks.</p>
     </div>
 
-    <!-- 雷达图部分 -->
+    <!-- 雷达图部分（每行4个图表） -->
     <div class="radar-chart-section">
         <h2>Benchmark Performance</h2>
-        <div class="chart-container">
-            <img src="C:\Users\A\Desktop\demo\200B.jpg" alt="200B Model Radar Chart">
-            <img src="C:\Users\A\Desktop\demo\100B.jpg" alt="100B Model Radar Chart">
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: nowrap; width: 100%;">
+            <!-- 图表1 -->
+            <div class="chart-item" style="flex: 1; min-width: 0;">
+                <img src="C:\Users\A\Desktop\demo\200B.jpg" alt="Comparison against models with ≤100B parameters" style="width: 100%; height: 200px; object-fit: contain;">
+                <p>Comparison against models with ≤100B parameters</p>
+            </div>
+            <!-- 图表2 -->
+            <div class="chart-item" style="flex: 1; min-width: 0;">
+                <img src="C:\Users\A\Desktop\demo\100B.jpg" alt="Comparison against models with >=100B parameters" style="width: 100%; height: 200px; object-fit: contain;">
+                <p>Comparison against models with >=100B parameters</p>
+            </div>
+            <!-- 图表3 -->
+            <div class="chart-item" style="flex: 1; min-width: 0;">
+                <img src="bmk_72B+1.jpg" alt="Pelican-VL 1.0 vs models >=100B" style="width: 100%; height: 200px; object-fit: contain;">
+                <p>Pelican-VL 1.0 vs models >=100B</p>
+            </div>
+            <!-- 图表4 -->
+            <div class="chart-item" style="flex: 1; min-width: 0;">
+                <img src="bmk_72B-1.jpg" alt="Pelican-VL 1.0 vs models ≤100B" style="width: 100%; height: 200px; object-fit: contain;">
+                <p>Pelican-VL 1.0 vs models ≤100B</p>
+            </div>
         </div>
     </div>
 
@@ -211,22 +289,253 @@
     <div class="experimental-setup-section">
         <h2>Performance Evolution Trajectory Across Metaloop Training</h2>
         <img src="Evolution.png" alt="Experimental Evolution">
+        <p>Performance Evolution at Each Stage of DPPO</p>
     </div>
 
     <!-- 模型表现视频部分 -->
     <div class="model-performance-section">
         <h2>Downstream Applications</h2>
-        <div class="video-container">
-            <video src="sponge_wipe.mp4" controls muted></video>
-            <video src="blue_balloon.mp4" controls muted></video>
-            <video src="chips.mp4" controls muted></video>
-            <video src="soft_labobo.mp4" controls muted></video>
+        <!-- 新增：横向滚动图片容器 + 滑动按钮 -->
+        <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
+                <strong>Generated Step-wise affordance</strong>
+                <div class="scroll-container">
+                    <button class="scroll-btn" id="scroll-left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="scroll-content">
+                        <!-- 第一张：Mid（上） + Left（左下） + Right（右下） 拼接 -->
+                        <div class="scroll-item" style="width: 100%;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\mid_rgb.png" alt="mid_rgb" style="width: 100%; max-width: 200px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\left_rgb.png" alt="left_rgb" style="width: 49.5%; max-width: 100px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\right_rgb.png" alt="right_rgb" style="width: 49.5%; max-width: 100px;">
+                            </div>
+                            <p>(a) Raw multi-view inputs</p>
+                        </div>
+
+                        <!-- 第二张：View_2（上） + View_1（左下） + View_0（右下） 拼接 -->
+                        <div class="scroll-item" style="width: 100%;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\view_2_annotated.jpg" alt="view_2_annotated" style="width: 100%; max-width: 200px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\view_1_annotated.jpg" alt="view_1_annotated" style="width: 49.5%; max-width: 100px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\view_0_annotated.jpg" alt="view_0_annotated" style="width: 49.5%; max-width: 100px;">
+                            </div>
+                            <p>(b) Visual grounding</p>
+                        </div>
+
+                        <!-- 第三张：2D-to-3D affordance triangulation（保持原样式） -->
+                        <div class="scroll-item" style="width: 40%;">
+                            <img src="fig9_raw\20251104-194905.png" alt="20251104-194905" style="max-height: 170px; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <p>(c) 2D-to-3D affordance triangulation</p>
+                        </div>
+
+                        <!-- 第四张：Task_1_Step_1_View_2（上） + Task_1_Step_1_View_1（左下） + Task_1_Step_1_View_0（右下） 拼接 -->
+                        <div class="scroll-item" style="width: 100%;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_1_view_2_modi.png" alt="task_1_step_1_view_2_modi" style="width: 100%; max-width: 200px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_1_view_1_modi.png" alt="task_1_step_1_view_1_modi" style="width: 49.5%; max-width: 100px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_1_view_0_modi.png" alt="task_1_step_1_view_0_modi" style="width: 49.5%; max-width: 100px;">
+                            </div>
+                            <p>(d.1) Pick</p>
+                        </div>
+
+                        <!-- 第五张：Task_1_Step_2_View_2（上） + Task_1_Step_2_View_1（左下） + Task_1_Step_2_View_0（右下） 拼接 -->
+                        <div class="scroll-item" style="width: 100%;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_2_view_2_modi.png" alt="task_1_step_2_view_2_modi" style="width: 100%; max-width: 200px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_2_view_1_modi.png" alt="task_1_step_2_view_1_modi" style="width: 49.5%; max-width: 100px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_2_view_0_modi.png" alt="task_1_step_2_view_0_modi" style="width: 49.5%; max-width: 100px;">
+                            </div>
+                            <p>(d.2) Move</p>
+                        </div>
+
+                        <!-- 第六张：Task_1_Step_3_View_2（上） + Task_1_Step_3_View_1（左下） + Task_1_Step_3_View_0（右下） 拼接 -->
+                        <div class="scroll-item" style="width: 100%;">
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_3_view_2_modi.png" alt="task_1_step_3_view_2_modi" style="width: 100%; max-width: 200px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_3_view_1_modi.png" alt="task_1_step_3_view_1_modi" style="width: 49.5%; max-width: 100px;">
+                                <img src="C:\Users\A\Desktop\demo\fig9_raw\task_1_step_3_view_0_modi.png" alt="task_1_step_3_view_0_modi" style="width: 49.5%; max-width: 100px;">
+                            </div>
+                            <p>(d.3) Place</p>
+                        </div>
+                    </div>
+                    <button class="scroll-btn" id="scroll-right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 修改后：横向滚动视频容器（替换原有图片模块） -->
+        <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
+            <strong>Generalization to tasks with different objects and scenes</strong>
+            <div class="scroll-container">
+                <button class="scroll-btn" id="video-scroll-left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="scroll-content" style="justify-content: space-between;"> <!-- 确保等距分布 -->
+                    <!-- 视频1：修复calc语法（补全空格） -->
+                    <div class="scroll-item" style="min-width: calc(40% - 1rem);"> 
+                        <video src="飞书20251104-205447.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频2：修复calc语法 -->
+                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
+                        <video src="飞书20251104-205511.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频3：修复calc语法 -->
+                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
+                        <video src="飞书20251104-205519.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频4：修复calc语法 -->
+                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
+                        <video src="飞书20251104-205523.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频5：修复calc语法 -->
+                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
+                        <video src="飞书20251104-205528.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                </div>
+                <button class="scroll-btn" id="video-scroll-right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+    </div>
+    <!-- 新增：Embodied Foundation Model 模块（含4排图片，与上方格式一致） -->
+    <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
+        <strong>Long-Horizon Task Reasoning and Planing</strong>
+        <div style="margin-top: 1rem;">
+            <!-- 第一排：Environmental Perception -->
+            <div style="font-size: 1rem; font-weight: 500; margin-bottom: 1rem; text-align: left;">
+                Environmental Perception
+            </div>
+            <div class="scroll-container" style="margin-bottom: 1.5rem;">
+                <div class="scroll-content" style="gap: 1rem;">
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image.png" alt="Environmental Perception 1" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (1).png" alt="Environmental Perception 2" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (2).png" alt="Environmental Perception 3" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (3).png" alt="Environmental Perception 4" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二排：Task 1: Place shoes on rack -->
+            <div style="font-size: 1rem; font-weight: 500; margin-bottom: 1rem; text-align: left;">
+                Task 1: Place shoes on rack
+            </div>
+            <div class="scroll-container" style="margin-bottom: 1.5rem;">
+                <div class="scroll-content" style="gap: 1rem;">
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (6).png" alt="Move to shoe rack" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Move to shoe rack</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (4).png" alt="Grab the shoes" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Grab the shoes</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (5).png" alt="Place on shoe rack" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Place them on the shoe rack</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (13).png" alt="Task 1 completed" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Task 1 completed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第三排：Task 2: Throw garbage into trash can -->
+            <div style="font-size: 1rem; font-weight: 500; margin-bottom: 1rem; text-align: left;">
+                Task 2: Throw garbage into trash can
+            </div>
+            <div class="scroll-container" style="margin-bottom: 1.5rem;">
+                <div class="scroll-content" style="gap: 1rem;">
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (7).png" alt="Go to the table" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Go to the table</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (8).png" alt="Grab the milk carton" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Grab the milk carton</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (9).png" alt="Throw into trash can" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Throw into trash can</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (14).png" alt="Task 2 completed" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Task 2 completed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第四排：Task 3: Put clothes into washing machine -->
+            <div style="font-size: 1rem; font-weight: 500; margin-bottom: 1rem; text-align: left;">
+                Task 3: Put clothes into washing machine
+            </div>
+            <div class="scroll-container">
+                <div class="scroll-content" style="gap: 1rem;">
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (15).png" alt="Grab the dirty clothes" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Grab the dirty clothes</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (10).png" alt="Move to the washer" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Move to the washer and put it in</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (11).png" alt="Put into washing machine" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Close the door</p>
+                    </div>
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <img src="whiteboard_exported_image (12).png" alt="Close the door & Task 3 completed" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>Task 3 completed</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+        <!-- 修改后：最下方视频模块（仅调大小，保持原视频属性，带方框和标题） -->
+        <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
+            <strong>Gentle Grasp for Delicate and Compliant Objects</strong> 
+            <div class="scroll-container"> <!-- 沿用横向滚动容器 -->
+                <button class="scroll-btn" id="bottom-video-scroll-left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="scroll-content" style="gap: 1rem;">
+                    <!-- 视频1：仅控制容器宽度，保持原视频比例和属性 -->
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <video src="sponge_wipe.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频2：仅控制容器宽度 -->
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <video src="blue_balloon.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频3：仅控制容器宽度 -->
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <video src="chips.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                    <!-- 视频4：仅控制容器宽度 -->
+                    <div class="scroll-item" style="min-width: 22%;">
+                        <video src="soft_labobo.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    </div>
+                </div>
+                <button class="scroll-btn" id="bottom-video-scroll-right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
 
-    <!-- BibTex部分 -->
-    <div class="bibtex-section">
-        <span class="bibtex-label">BibTex</span>
+    <!-- Citation部分（标题靠左） -->
+    <div class="citation-section">
+        <h2>Citation</h2>
+        <p class="citation-note">If you use any source codes or the datasets included in this toolkit in your work, please cite the following paper. The bibtex are listed below:</p>
         <div class="bibtex-box">
 @misc{zhang2025pelicanvl10foundationbrain,
       title={Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence}, 
@@ -239,5 +548,45 @@
 }
         </div>
     </div>
+
+    <script>
+        // 图片滑动按钮功能
+        const scrollLeft = document.getElementById('scroll-left');
+        const scrollRight = document.getElementById('scroll-right');
+        const scrollContent = document.querySelector('.scroll-content');
+
+        scrollLeft.addEventListener('click', () => {
+            scrollContent.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        scrollRight.addEventListener('click', () => {
+            scrollContent.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        // 视频滑动按钮功能
+        const videoScrollLeft = document.getElementById('video-scroll-left');
+        const videoScrollRight = document.getElementById('video-scroll-right');
+        const videoScrollContent = document.querySelectorAll('.scroll-content')[1]; // 选择第二个滚动容器
+
+        videoScrollLeft.addEventListener('click', () => {
+            videoScrollContent.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        videoScrollRight.addEventListener('click', () => {
+            videoScrollContent.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+                // 最下方视频滑动按钮功能
+        const bottomVideoScrollLeft = document.getElementById('bottom-video-scroll-left');
+        const bottomVideoScrollRight = document.getElementById('bottom-video-scroll-right');
+        const bottomVideoScrollContent = document.querySelectorAll('.scroll-content')[4]; // 选择第5个滚动容器（最下方视频）
+
+        bottomVideoScrollLeft.addEventListener('click', () => {
+            bottomVideoScrollContent.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        bottomVideoScrollRight.addEventListener('click', () => {
+            bottomVideoScrollContent.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
