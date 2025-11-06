@@ -51,7 +51,7 @@
             margin-right: 0.5rem;
         }
 
-        /* 新增Abstract部分样式 */
+        /* Abstract部分样式 */
         .abstract-section {
             margin-top: 4rem;
             text-align: justify;
@@ -74,7 +74,7 @@
             margin-bottom: 1rem;
         }
 
-        /* 雷达图部分样式（调整为4张图一排且大小对齐） */
+        /* 雷达图部分样式 */
         .radar-chart-section {
             margin-top: 4rem;
         }
@@ -84,19 +84,18 @@
             margin-bottom: 2rem;
             text-align: center;
         }
-        .chart-container {
+        .chart-row {
             display: flex;
-            flex-wrap: nowrap; /* 禁止换行，强制一排显示 */
+            flex-wrap: nowrap;
             justify-content: center;
-            gap: 1rem; /* 统一间距 */
-            overflow-x: auto; /* 小屏幕横向滚动适配 */
-            padding-bottom: 1rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         .chart-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 23%; /* 4张图均分宽度 */
+            width: 45%;
         }
         .chart-item img {
             max-width: 100%;
@@ -109,6 +108,31 @@
             line-height: 1.5;
             text-align: center;
             font-size: 0.85rem;
+        }
+
+        /* 表格部分样式 */
+        .tables-section {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .table-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .table-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .table-image {
+            max-width: 90%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         /* 实验设置部分样式 */
@@ -133,7 +157,7 @@
             font-size: 0.95rem;
         }
 
-        /* 模型表现视频部分样式 */
+        /* 模型表现模块样式 */
         .model-performance-section {
             margin-top: 4rem;
         }
@@ -143,44 +167,8 @@
             margin-bottom: 2rem;
             text-align: center;
         }
-        .video-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .video-container video {
-            max-width: 23%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
 
-        /* Citation部分样式（标题靠左） */
-        .citation-section {
-            margin-top: 4rem;
-            text-align: left;
-        }
-        .citation-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        .citation-note {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        .bibtex-box {
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre-wrap;
-        }
-
-        /* 新增：横向滚动图片容器 + 滑动按钮样式 */
+        /* 横向滚动图片容器 + 滑动按钮样式 */
         .scroll-container {
             display: flex;
             align-items: center;
@@ -225,155 +213,270 @@
             margin-top: 0.5rem;
             text-align: center;
         }
+
         /* 椭圆框+箭头样式 */
         .ellipse-box {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-        border: 2px solid #2d2d2d;
-        border-radius: 50px; /* 椭圆效果 */
-        padding: 0.3rem 0.8rem;
-        font-weight: 600;
-        margin-right: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border: 2px solid #2d2d2d;
+            border-radius: 50px;
+            padding: 0.3rem 0.8rem;
+            font-weight: 600;
+            margin-right: 1rem;
         }
         .arrow {
-        display: inline-block;
-        width: 0;
-        height: 0;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-left: 8px solid #2d2d2d;
-        margin-right: 0.5rem;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid #2d2d2d;
+            margin-right: 0.5rem;
         }
         .task-row {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
         }
         .task-img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        /* 确保每排任务行高度对齐 */
         .task-row {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
         }
-        /* 左侧椭圆框容器（固定宽度，确保对齐） */
         .left-flow {
-        width: 200px;
-        display: flex;
-        flex-direction: column;
-        gap: 2.0rem;
-        margin-right: 1rem;
-        padding-top: 0.8rem;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 2.0rem;
+            margin-right: 1rem;
+            padding-top: 0.8rem;
         }
         .flow-item {
-        display: flex;
-        align-items: center;
+            display: flex;
+            align-items: center;
         }
         .flow-ellipse {
-        background-color: #fff;
-        border: 2px solid #2d2d2d;
-        border-radius: 50px;
-        padding: 0.5rem 1rem;
-        font-weight: 600;
-        text-align: center;
-        min-width: 150px;
+            background-color: #fff;
+            border: 2px solid #2d2d2d;
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            text-align: center;
+            min-width: 150px;
         }
         .flow-arrow {
-        display: inline-block;
-        width: 0;
-        height: 0;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-left: 8px solid #2d2d2d;
-        margin-left: 0.5rem;
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid #2d2d2d;
+            margin-left: 0.5rem;
         }
-        /* 右侧图片组容器（自动填充剩余宽度） */
         .right-images {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         .image-row {
-        display: flex;
-        gap: 1rem;
+            display: flex;
+            gap: 1rem;
         }
         .image-item {
-        flex: 1;
-        min-width: 22%;
+            flex: 1;
+            min-width: 22%;
         }
         .image-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        /* 左侧椭圆框垂直连接箭头样式 */
         .vertical-connector {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 1rem; /* 椭圆框与图片组之间的间距 */
+            margin: 0 1rem;
         }
         .vertical-arrow {
             width: 0;
             height: 0;
             border-left: 8px solid transparent;
             border-right: 8px solid transparent;
-            border-top: 8px solid #2d2d2d; /* 向下箭头 */
-            margin: 0.3rem 0; /* 箭头之间的间距 */
+            border-top: 8px solid #2d2d2d;
+            margin: 0.3rem 0;
         }
-        /* 确保每排任务行对齐 */
         .task-row {
-            align-items: flex-start; /* 顶部对齐，避免箭头错位 */
-            margin-bottom: 1.5rem; /* 增加行间距，给垂直箭头留空间 */
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
         }
-        /* 统一椭圆框宽度，确保垂直箭头对齐 */
         .ellipse-box {
-            min-width: 180px; /* 固定宽度，避免文字换行导致框体变窄 */
-            text-align: center; /* 文字居中 */
+            min-width: 180px;
+            text-align: center;
         }
-        /* 椭圆框之间的垂直箭头 */
         .vertical-arrow {
-        width: 0;
-        height: 0;
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid #2d2d2d; /* 向下箭头 */
-        margin: 0.3rem auto; /* 水平居中，上下间距 */
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #2d2d2d;
+            margin: 0.3rem auto;
+        }
+
+        /* 视频交互模块样式 */
+        .video-module {
+            border: 2px solid #2d2d2d;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        .gif-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            justify-content: center;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            /* 隐藏滚动条 - 适配 Firefox/IE/Edge */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        /* 隐藏滚动条 - 适配 Chrome/Safari 等 webkit 内核浏览器 */
+        .gif-grid::-webkit-scrollbar {
+            display: none;
+        }
+        .gif-card {
+            min-width: 23%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .gif-card img {
+            width: 90%;
+            aspect-ratio: 16/9;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.2s;
+        }
+        .gif-card img:hover {
+            transform: scale(1.02);
+        }
+        .gif-card img.highlight {
+            border-color: #2d2d2d;
+        }
+        .gif-card p {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        .video-container {
+            width: 100%;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            padding: 0.3rem;
+            border-radius: 6px;
+        }
+        .video-container video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 4px;
+        }
+
+        /* Citation部分样式 */
+        .citation-section {
+            margin-top: 4rem;
+            text-align: left;
+        }
+        .citation-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .citation-note {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .bibtex-box {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+        /* Gentle Grasp 模块（原图显示+无白边+紧挨着） */
+        .gentle-grasp-module .gif-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0; /* 四张图完全紧挨着 */
+        margin-top: 1rem;
+        justify-content: center;
+        padding: 0; /* 取消内边距 */
+        }
+        .gentle-grasp-module .gif-card {
+        flex: 1; /* 四张图均分宽度 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        }
+        .gentle-grasp-module .gif-card img {
+        width: 100%;
+        height: auto; /* 完全按原图比例显示，无强制高度 */
+        object-fit: contain; /* 保证动图完整，无裁剪 */
+        border-radius: 0;
+        box-shadow: none;
+        cursor: default;
+        border: none;
+        background-color: transparent; /* 无白边背景 */
+        }
+        .gentle-grasp-module .gif-card img:hover {
+        transform: none;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence</h1>
+    <h1>
+    <img src="Pelican_logo.png" alt="Pelican Logo" style="width: 60px; height: auto; vertical-align: middle; margin-right: 1rem;">
+    Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence
+    </h1>
     <div class="affiliation">
-        WFM System Group<br>
-        Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br>
+    <span style="color: #801100;">WFM System Group</span><br>
+    Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br>
     </div>
     <div class="contact">
         {vito.dai, jason.ju}@x-humanoid.com
     </div>
     <div class="button-group">
-        <a href="#" class="btn"><i class="fas fa-file-pdf"></i> Arxiv</a>
-        <a href="#" class="btn"><i class="fas fa-code"></i> Code</a>
-        <a href="#" class="btn"><i class="fas fa-database"></i> Dataset</a>
-        <a href="#" class="btn"><i class="fas fa-trophy"></i> Benchmark</a>
-        <a href="#" class="btn"><i class="fas fa-desktop"></i> Demo</a>
+        <a href="https://arxiv.org/abs/2511.00108" class="btn" target="_blank"><i class="fas fa-file-pdf"></i> Arxiv</a>
+        <a href="https://github.com/Open-X-Humanoid/pelican-vl" class="btn" target="_blank"><i class="fas fa-code"></i> Code</a>
+        <a href="#" class="btn" target="_blank"><i class="fas fa-desktop"></i> Demo</a>
     </div>
+
     <!-- Abstract部分 -->
     <div class="abstract-section">
         <h2>Abstract</h2>
-        <img src="20251104-154827.jpg" alt="Pelican-VL 1.0 Demo">
-        <p> This report presents Pelican-VL 1.0, a new family of open-source embodied brain models with parameter scales ranging
- from 7billion to 72 billion. Our explicit mission is clearly stated as: To embed powerful intelligence into various embodiments.
+        <img src="teaser(2)_01.jpg" alt="Pelican-VL 1.0 Demo">
+        <p>This report presents Pelican-VL 1.0, a new family of open-source embodied brain models with parameter scales ranging
+ from 7 billion to 72 billion. Our explicit mission is clearly stated as: To embed powerful intelligence into various embodiments.
  Pelican-VL 1.0 is currently the largest-scale open-source embodied multimodal brain model. Its core advantage lies in the
  in-depth integration of data power and intelligent adaptive learning mechanisms. Specifically, metaloop distilled a high-quality
  dataset from a raw dataset containing 4+ billion tokens. Pelican-VL 1.0 is trained on a large-scale cluster of 1000+ A800 GPUs,
@@ -382,29 +485,37 @@
  embodied benchmarks.</p>
     </div>
 
-    <!-- 雷达图部分（每行4个图表） -->
+    <!-- 雷达图部分 -->
     <div class="radar-chart-section">
         <h2>Benchmark Performance</h2>
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: nowrap; width: 100%;">
-            <!-- 图表1 -->
-            <div class="chart-item" style="flex: 1; min-width: 0;">
-                <img src="200B.jpg" alt="Comparison against models with ≤100B parameters" style="width: 100%; height: 200px; object-fit: contain;">
+        <div class="chart-row">
+            <div class="chart-item">
+                <img src="200B.jpg" alt="Comparison against models with ≤100B parameters" style="width: auto; height: 160%; max-width: 100%;">
+                <p>Comparison against models with >100B parameters</p>
+            </div>
+            <div class="chart-item">
+                <img src="100B.jpg" alt="Comparison against models with >100B parameters" style="width: auto; height: 160%; max-width: 100%;">
                 <p>Comparison against models with ≤100B parameters</p>
             </div>
-            <!-- 图表2 -->
-            <div class="chart-item" style="flex: 1; min-width: 0;">
-                <img src="100B.jpg" alt="Comparison against models with >=100B parameters" style="width: 100%; height: 200px; object-fit: contain;">
-                <p>Comparison against models with >=100B parameters</p>
+        </div>
+        <div class="chart-row">
+            <div class="chart-item">
+                <img src="bmk_72B+1.jpg" alt="Pelican-VL 1.0 vs models >100B" style="width: auto; height: auto; max-width: 100%;">
+                <p>Pelican-VL 1.0 vs models >100B</p>
             </div>
-            <!-- 图表3 -->
-            <div class="chart-item" style="flex: 1; min-width: 0;">
-                <img src="bmk_72B+1.jpg" alt="Pelican-VL 1.0 vs models >=100B" style="width: 100%; height: 200px; object-fit: contain;">
-                <p>Pelican-VL 1.0 vs models >=100B</p>
-            </div>
-            <!-- 图表4 -->
-            <div class="chart-item" style="flex: 1; min-width: 0;">
-                <img src="bmk_72B-1.jpg" alt="Pelican-VL 1.0 vs models ≤100B" style="width: 100%; height: 200px; object-fit: contain;">
+            <div class="chart-item">
+                <img src="bmk_72B-1.jpg" alt="Pelican-VL 1.0 vs models ≤100B" style="width: auto; height: auto; max-width: 100%;">
                 <p>Pelican-VL 1.0 vs models ≤100B</p>
+            </div>
+        </div>
+        <div class="tables-section">
+            <div class="table-container">
+                <h3 class="table-title">Performance of Models with >100B Parameters</h3>
+                <img src="20251106-160357.jpg" alt="Performance of Models with >100B Parameters" class="table-image">
+            </div>
+            <div class="table-container">
+                <h3 class="table-title">Performance of Models with ≤100B Parameters</h3>
+                <img src="20251106-160348.jpg" alt="Performance of Models with ≤100B Parameters" class="table-image">
             </div>
         </div>
     </div>
@@ -416,270 +527,251 @@
         <p>Performance Evolution at Each Stage of DPPO</p>
     </div>
 
-    <!-- 模型表现视频部分 -->
+    <!-- 模型表现模块 -->
     <div class="model-performance-section">
         <h2>Downstream Applications</h2>
-        <!-- 新增：横向滚动图片容器 + 滑动按钮 -->
+        
+        <!-- Generated Step-wise affordance 模块 -->
         <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
-                <strong>Generated Step-wise affordance</strong>
-                <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">
-                    Pelican-VL 1.0 can generate consistent affordances for multi-view inputs, so that 2D affordances can be triangulated into 3D target points as direct robot action commands.</p>                    
-                <div class="scroll-container">
-                    <button class="scroll-btn" id="scroll-left">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="scroll-content">
-                        <!-- 第一张：Mid（上） + Left（左下） + Right（右下） 拼接 -->
-                        <div class="scroll-item" style="width: 100%;">
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
-                                <img src="fig9_raw\mid_rgb.png" alt="mid_rgb" style="width: 100%; max-width: 200px;">
-                                <img src="fig9_raw\left_rgb.png" alt="left_rgb" style="width: 49.5%; max-width: 100px;">
-                                <img src="fig9_raw\right_rgb.png" alt="right_rgb" style="width: 49.5%; max-width: 100px;">
-                            </div>
-                            <p>(a) Raw multi-view inputs</p>
-                        </div>
-
-                        <!-- 第二张：View_2（上） + View_1（左下） + View_0（右下） 拼接 -->
-                        <div class="scroll-item" style="width: 100%;">
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
-                                <img src="fig9_raw\view_2_annotated.jpg" alt="view_2_annotated" style="width: 100%; max-width: 200px;">
-                                <img src="fig9_raw\view_1_annotated.jpg" alt="view_1_annotated" style="width: 49.5%; max-width: 100px;">
-                                <img src="fig9_raw\view_0_annotated.jpg" alt="view_0_annotated" style="width: 49.5%; max-width: 100px;">
-                            </div>
-                            <p>(b) Visual grounding</p>
-                        </div>
-
-                        <!-- 第三张：2D-to-3D affordance triangulation（保持原样式） -->
-                        <div class="scroll-item" style="width: 40%;">
-                            <img src="fig9_raw\20251104-194905.png" alt="20251104-194905" style="max-height: 170px; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                            <p>(c) 2D-to-3D affordance triangulation</p>
-                        </div>
-
-                        <!-- 第四张：Task_1_Step_1_View_2（上） + Task_1_Step_1_View_1（左下） + Task_1_Step_1_View_0（右下） 拼接 -->
-                        <div class="scroll-item" style="width: 100%;">
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
-                                <img src="fig9_raw\task_1_step_1_view_2_modi.png" alt="task_1_step_1_view_2_modi" style="width: 100%; max-width: 200px;">
-                                <img src="fig9_raw\task_1_step_1_view_1_modi.png" alt="task_1_step_1_view_1_modi" style="width: 49.5%; max-width: 100px;">
-                                <img src="fig9_raw\task_1_step_1_view_0_modi.png" alt="task_1_step_1_view_0_modi" style="width: 49.5%; max-width: 100px;">
-                            </div>
-                            <p>(d.1) Pick</p>
-                        </div>
-
-                        <!-- 第五张：Task_1_Step_2_View_2（上） + Task_1_Step_2_View_1（左下） + Task_1_Step_2_View_0（右下） 拼接 -->
-                        <div class="scroll-item" style="width: 100%;">
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
-                                <img src="fig9_raw\task_1_step_2_view_2_modi.png" alt="task_1_step_2_view_2_modi" style="width: 100%; max-width: 200px;">
-                                <img src="fig9_raw\task_1_step_2_view_1_modi.png" alt="task_1_step_2_view_1_modi" style="width: 49.5%; max-width: 100px;">
-                                <img src="fig9_raw\task_1_step_2_view_0_modi.png" alt="task_1_step_2_view_0_modi" style="width: 49.5%; max-width: 100px;">
-                            </div>
-                            <p>(d.2) Move</p>
-                        </div>
-
-                        <!-- 第六张：Task_1_Step_3_View_2（上） + Task_1_Step_3_View_1（左下） + Task_1_Step_3_View_0（右下） 拼接 -->
-                        <div class="scroll-item" style="width: 100%;">
-                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
-                                <img src="fig9_raw\task_1_step_3_view_2_modi.png" alt="task_1_step_3_view_2_modi" style="width: 100%; max-width: 200px;">
-                                <img src="fig9_raw\task_1_step_3_view_1_modi.png" alt="task_1_step_3_view_1_modi" style="width: 49.5%; max-width: 100px;">
-                                <img src="fig9_raw\task_1_step_3_view_0_modi.png" alt="task_1_step_3_view_0_modi" style="width: 49.5%; max-width: 100px;">
-                            </div>
-                            <p>(d.3) Place</p>
-                        </div>
-                    </div>                  
-                    <button class="scroll-btn" id="scroll-right">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>                            
-            </div>
-        </div>
-
-        <!-- 修改后：横向滚动视频容器（替换原有图片模块） -->
-        <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
-            <strong>Generalization to tasks with different objects and scenes</strong>
-            <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL-1.0 generates accurate multi-view visual grounding and affordance-based task de-compositions. Grasp points are highlighted in green,avoidance regions in yellow, and placement targets in pink.</p>
+            <strong>Generated Step-wise affordance</strong>
+            <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">
+                Pelican-VL 1.0 can generate consistent affordances for multi-view inputs, so that 2D affordances can be triangulated into 3D target points as direct robot action commands.</p>                    
             <div class="scroll-container">
-                <button class="scroll-btn" id="video-scroll-left">
+                <button class="scroll-btn" id="scroll-left">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="scroll-content" style="justify-content: space-between;"> <!-- 确保等距分布 -->
-                    <!-- 视频5：修复calc语法 -->
-                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
-                        <video src="飞书20251104-205528.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
-                        <p>Put the red apple into the blue plate</p>
-                    </div>                    
-                    <!-- 视频2：修复calc语法 -->
-                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
-                        <video src="飞书20251104-205511.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
-                        <p>Put the snack package into the blue plate</p>
+                <div class="scroll-content">
+                    <div class="scroll-item" style="width: 100%;">
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                            <img src="fig9_raw\mid_rgb.png" alt="mid_rgb" style="width: 100%; max-width: 200px;">
+                            <img src="fig9_raw\left_rgb.png" alt="left_rgb" style="width: 49.5%; max-width: 100px;">
+                            <img src="fig9_raw\right_rgb.png" alt="right_rgb" style="width: 49.5%; max-width: 100px;">
+                        </div>
+                        <p>(a) Raw multi-view inputs</p>
                     </div>
-                    <!-- 视频3：修复calc语法 -->
-                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
-                        <video src="飞书20251104-205519.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
-                        <p>Put the orange into the bamboo basket </p>
+                    <div class="scroll-item" style="width: 100%;">
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                            <img src="fig9_raw\view_2_annotated.jpg" alt="view_2_annotated" style="width: 100%; max-width: 200px;">
+                            <img src="fig9_raw\view_1_annotated.jpg" alt="view_1_annotated" style="width: 49.5%; max-width: 100px;">
+                            <img src="fig9_raw\view_0_annotated.jpg" alt="view_0_annotated" style="width: 49.5%; max-width: 100px;">
+                        </div>
+                        <p>(b) Visual grounding</p>
                     </div>
-                    <!-- 视频4：修复calc语法 -->
-                    <div class="scroll-item" style="min-width: calc(40% - 1rem);">
-                        <video src="飞书20251104-205523.mp4" controls muted style="width: 100%; aspect-ratio: 16/9; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
-                        <p>Put the red apple into the bamboo basket</p>
+                    <div class="scroll-item" style="width: 40%;">
+                        <img src="fig9_raw\20251104-194905.png" alt="20251104-194905" style="max-height: 170px; width: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <p>(c) 2D-to-3D affordance triangulation</p>
                     </div>
-                </div>
-                <button class="scroll-btn" id="video-scroll-right">
+                    <div class="scroll-item" style="width: 100%;">
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                            <img src="fig9_raw\task_1_step_1_view_2_modi.png" alt="task_1_step_1_view_2_modi" style="width: 100%; max-width: 200px;">
+                            <img src="fig9_raw\task_1_step_1_view_1_modi.png" alt="task_1_step_1_view_1_modi" style="width: 49.5%; max-width: 100px;">
+                            <img src="fig9_raw\task_1_step_1_view_0_modi.png" alt="task_1_step_1_view_0_modi" style="width: 49.5%; max-width: 100px;">
+                        </div>
+                        <p>(d.1) Pick</p>
+                    </div>
+                    <div class="scroll-item" style="width: 100%;">
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                            <img src="fig9_raw\task_1_step_2_view_2_modi.png" alt="task_1_step_2_view_2_modi" style="width: 100%; max-width: 200px;">
+                            <img src="fig9_raw\task_1_step_2_view_1_modi.png" alt="task_1_step_2_view_1_modi" style="width: 49.5%; max-width: 100px;">
+                            <img src="fig9_raw\task_1_step_2_view_0_modi.png" alt="task_1_step_2_view_0_modi" style="width: 49.5%; max-width: 100px;">
+                        </div>
+                        <p>(d.2) Move</p>
+                    </div>
+                    <div class="scroll-item" style="width: 100%;">
+                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px;">
+                            <img src="fig9_raw\task_1_step_3_view_2_modi.png" alt="task_1_step_3_view_2_modi" style="width: 100%; max-width: 200px;">
+                            <img src="fig9_raw\task_1_step_3_view_1_modi.png" alt="task_1_step_3_view_1_modi" style="width: 49.5%; max-width: 100px;">
+                            <img src="fig9_raw\task_1_step_3_view_0_modi.png" alt="task_1_step_3_view_0_modi" style="width: 49.5%; max-width: 100px;">
+                        </div>
+                        <p>(d.3) Place</p>
+                    </div>
+                </div>                  
+                <button class="scroll-btn" id="scroll-right">
                     <i class="fas fa-chevron-right"></i>
                 </button>
+            </div>                            
+        </div>
+
+        <!-- Affordance manipulation 视频模块 -->
+        <div class="video-module">
+            <strong>Affordance manipulation generalizes effectively to novel objects and scenes</strong>
+            <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL-1.0 generates accurate multi-view visual grounding and affordance-based task de-compositions. Grasp points are highlighted in green,avoidance regions in yellow, and placement targets in pink.</p>
+            <div class="gif-grid">
+                <div class="gif-card">
+                    <img src="飞书20251104-205528.gif" alt="Put the ed apple into the blue plate" data-video="apple" class="highlight">
+                    <p>Put the ed apple into the blue plate</p>
+                </div>
+                <div class="gif-card">
+                    <img src="飞书20251104-205511.gif" alt="Put the snack package into the blue plate" data-video="snack">
+                    <p>Put the snack package into the blue plate</p>
+                </div>
+                <div class="gif-card">
+                    <img src="飞书20251104-205519.gif" alt="Put the orange into the bamboo basket" data-video="orange">
+                    <p>Put the orange into the bamboo basket</p>
+                </div>
+                <div class="gif-card">
+                    <img src="飞书20251104-205523.gif" alt="Put the red apple into the bamboo basket" data-video="redapple">
+                    <p>Put the red apple into the bamboo basket</p>
+                </div>
             </div>
-    </div>
-    <!-- 新增：Embodied Foundation Model 模块（含4排图片，与上方格式一致） -->
-    <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
-      <strong>Long-Horizon Task Reasoning and Planing</strong>
-      <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL 1.0 interprets a natural-language instruction and autonomously performs sequential actions—placing shoes on the rack, disposing garbage into the trash can, and loading clothes into the washing machine.</p>
-      <div style="margin-top: 1rem; display: flex;">
-        <!-- 左侧椭圆框列 -->
-        <div class="left-flow">
-            <div class="flow-item">
-                <div class="flow-ellipse">Pelican perceives the environment</div>
-                <div class="flow-arrow"></div>
+            <div class="video-container" id="video_apple">
+                <video src="飞书20251104-205528.mp4" controls controls type="video/mp4" playsinline  muted autoplay loop></video>
             </div>
-            <!-- 新增椭圆框间的垂直箭头 -->
-            <div class="vertical-arrow"></div>
-            <div class="flow-item">
-                <div class="flow-ellipse">Pelican receives human instruction</div>
-                <div class="flow-arrow"></div>
+            <div class="video-container" id="video_snack" style="display: none;">
+                <video src="飞书20251104-205511.mp4" controls controls type="video/mp4" playsinline  muted autoplay loop></video>
             </div>
-            <div class="vertical-arrow"></div>
-            <div class="flow-item">
-                <div class="flow-ellipse">Task 1: Place shoes on rack</div>
-                <div class="flow-arrow"></div>
+            <div class="video-container" id="video_orange" style="display: none;">
+                <video src="飞书20251104-205519.mp4" controls controls type="video/mp4" playsinline  muted autoplay loop></video>
             </div>
-            <div class="vertical-arrow"></div>
-            <div class="flow-item">
-                <div class="flow-ellipse">Task 2: Throw garbage into trash can</div>
-                <div class="flow-arrow"></div>
-            </div>
-            <div class="vertical-arrow"></div>
-            <div class="flow-item">
-                <div class="flow-ellipse">Task 3: Put clothes into washing machine</div>
-                <div class="flow-arrow"></div>
+            <div class="video-container" id="video_redapple" style="display: none;">
+                <video src="飞书20251104-205523.mp4" controls controls type="video/mp4" playsinline  muted autoplay loop></video>
             </div>
         </div>
 
-        <!-- 右侧图片组列 -->
-        <div class="right-images">
-          <!-- 第一排：Environmental Perception -->
-          <div class="image-row">
-            <div class="image-item">
-              <img src="whiteboard_exported_image.png" alt="Environmental Perception 1">
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (1).png" alt="Environmental Perception 2">
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (2).png" alt="Environmental Perception 3">
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (3).png" alt="Environmental Perception 4">
-            </div>
-          </div>
-
-        <!-- 第二排：Pelican receives human instruction -->
-            <div class="image-row" >
-              <div style="min-width: 8%;margin-right: -5rem;margin-left:-4rem">
-                <img src="20251106-112948.jpg" alt="Human Icon" style="width: 50%; height: auto; border-radius: 8px;">
-              </div>
-              <p style="text-align: left; font-size: 1rem; font-weight: 600; flex-grow: 1; margin-top: 3rem; margin-left: 0;">
-                "Please put the shoes on the shoe rack, throw the garbage on the table into the trash can, and put the dirty clothes on the sofa into the washing machine."
-              </p>
-            </div>
-
-        <!-- 第三排：Task 1: Place shoes on rack -->
-          <div class="image-row">
-            <div class="image-item">
-              <img src="whiteboard_exported_image (4).png" alt="Grab the shoes">
-              <p style="text-align: center; margin-top: 0.5rem;">Move to shoe rack</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (5).png" alt="Place on shoe rack">
-              <p style="text-align: center; margin-top: 0.5rem;">Grab the shoes</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (6).png" alt="Move to shoe rack">
-              <p style="text-align: center; margin-top: 0.5rem;">Place them on the shoe rack</p>
-            </div>                    
-            <div class="image-item">
-              <img src="whiteboard_exported_image (13).png" alt="Task 1 completed">
-              <p style="text-align: center; margin-top: 0.5rem;">Task 1 completed</p>
-            </div>
-          </div>
-
-          <!-- 第四排：Task 2: Throw garbage into trash can -->
-          <div class="image-row" style="margin-top: -2rem;">
-            <div class="image-item">
-              <img src="whiteboard_exported_image (7).png" alt="Go to the table">
-              <p style="text-align: center; margin-top: 0.5rem;">Go to the table</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (8).png" alt="Grab the milk carton">
-              <p style="text-align: center; margin-top: 0.5rem;">Grab the milk carton</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (9).png" alt="Throw into trash can">
-              <p style="text-align: center; margin-top: 0.5rem;">Throw into trash can</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (14).png" alt="Task 2 completed">
-              <p style="text-align: center; margin-top: 0.5rem;">Task 2 completed</p>
-            </div>
-          </div>
-
-          <!-- 第五排：Task 3: Put clothes into washing machine -->
-          <div class="image-row">
-            <div class="image-item">
-              <img src="whiteboard_exported_image (10).png" alt="Move to the washer">
-              <p style="text-align: center; margin-top: 0.5rem;">Grab the dirty clothes</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (11).png" alt="Put into washing machine">
-              <p style="text-align: center; margin-top: 0.5rem;">Move to the washer and put it in</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (12).png" alt="Close the door & Task 3 completed">
-              <p style="text-align: center; margin-top: 0.5rem;">Close the door</p>
-            </div>
-            <div class="image-item">
-              <img src="whiteboard_exported_image (15).png" alt="Grab the dirty clothes">
-              <p style="text-align: center; margin-top: 0.5rem;">Task 3 completed</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-        <!-- 修改后：最下方视频模块（仅调大小，保持原视频属性，带方框和标题） -->
+        <!-- Long-Horizon Task 模块 -->
         <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
-            <strong>Gentle Grasp for Delicate and Compliant Objects</strong> 
-            <!-- 移动到此处：说明文字在视频上方 -->
-            <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">
-                The initial force prior provided by Pelican-VL 1.0 accelerates the convergence of the online adaptive controller.</p>
-            <div class="scroll-container"> <!-- 沿用横向滚动容器 -->
-                <div class="scroll-content" style="gap: 1rem;">
-                    <!-- 视频1：仅控制容器宽度，保持原视频比例和属性 -->
-                    <div class="scroll-item" style="min-width: 22%;">
-                        <video src="sponge_wipe.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+            <strong>Long-Horizon Task Reasoning and Planing</strong>
+            <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL 1.0 interprets a natural-language instruction and autonomously performs sequential actions—placing shoes on the rack, disposing garbage into the trash can, and loading clothes into the washing machine.</p>
+            <div style="margin-top: 1rem; display: flex;">
+                <div class="left-flow">
+                    <div class="flow-item">
+                        <div class="flow-ellipse">Pelican perceives the environment</div>
+                        <div class="flow-arrow"></div>
                     </div>
-                    <!-- 视频2：仅控制容器宽度 -->
-                    <div class="scroll-item" style="min-width: 22%;">
-                        <video src="blue_balloon.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    <div class="vertical-arrow"></div>
+                    <div class="flow-item">
+                        <div class="flow-ellipse">Pelican receives human instruction</div>
+                        <div class="flow-arrow"></div>
                     </div>
-                    <!-- 视频3：仅控制容器宽度 -->
-                    <div class="scroll-item" style="min-width: 22%;">
-                        <video src="chips.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    <div class="vertical-arrow"></div>
+                    <div class="flow-item">
+                        <div class="flow-ellipse">Task 1: Place shoes on rack</div>
+                        <div class="flow-arrow"></div>
                     </div>
-                    <!-- 视频4：仅控制容器宽度 -->
-                    <div class="scroll-item" style="min-width: 22%;">
-                        <video src="soft_labobo.mp4" controls muted style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);"></video>
+                    <div class="vertical-arrow"></div>
+                    <div class="flow-item">
+                        <div class="flow-ellipse">Task 2: Throw garbage into trash can</div>
+                        <div class="flow-arrow"></div>
+                    </div>
+                    <div class="vertical-arrow"></div>
+                    <div class="flow-item">
+                        <div class="flow-ellipse">Task 3: Put clothes into washing machine</div>
+                        <div class="flow-arrow"></div>
+                    </div>
+                </div>
+                <div class="right-images">
+                    <div class="image-row">
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image.png" alt="Environmental Perception 1">
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (1).png" alt="Environmental Perception 2">
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (2).png" alt="Environmental Perception 3">
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (3).png" alt="Environmental Perception 4">
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div style="min-width: 8%;margin-right: -5rem;margin-left:-4rem">
+                            <img src="20251106-112948.jpg" alt="Human Icon" style="width: 50%; height: auto; border-radius: 8px;">
+                        </div>
+                        <p style="text-align: left; font-size: 1rem; font-weight: 600; flex-grow: 1; margin-top: 3rem; margin-left: 0;">
+                            "Please put the shoes on the shoe rack, throw the garbage on the table into the trash can, and put the dirty clothes on the sofa into the washing machine."
+                        </p>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (4).png" alt="Grab the shoes">
+                            <p style="text-align: center; margin-top: 0.5rem;">Move to shoe rack</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (5).png" alt="Place on shoe rack">
+                            <p style="text-align: center; margin-top: 0.5rem;">Grab the shoes</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (6).png" alt="Move to shoe rack">
+                            <p style="text-align: center; margin-top: 0.5rem;">Place them on the shoe rack</p>
+                        </div>                    
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (13).png" alt="Task 1 completed">
+                            <p style="text-align: center; margin-top: 0.5rem;">Task 1 completed</p>
+                        </div>
+                    </div>
+                    <div class="image-row" style="margin-top: -2rem;">
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (7).png" alt="Go to the table">
+                            <p style="text-align: center; margin-top: 0.5rem;">Go to the table</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (8).png" alt="Grab the milk carton">
+                            <p style="text-align: center; margin-top: 0.5rem;">Grab the milk carton</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (9).png" alt="Throw into trash can">
+                            <p style="text-align: center; margin-top: 0.5rem;">Throw into trash can</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (14).png" alt="Task 2 completed">
+                            <p style="text-align: center; margin-top: 0.5rem;">Task 2 completed</p>
+                        </div>
+                    </div>
+                    <div class="image-row">
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (10).png" alt="Move to the washer">
+                            <p style="text-align: center; margin-top: 0.5rem;">Grab the dirty clothes</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (11).png" alt="Put into washing machine">
+                            <p style="text-align: center; margin-top: 0.5rem;">Move to the washer and put it in</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (12).png" alt="Close the door & Task 3 completed">
+                            <p style="text-align: center; margin-top: 0.5rem;">Close the door</p>
+                        </div>
+                        <div class="image-item">
+                            <img src="whiteboard_exported_image (15).png" alt="Grab the dirty clothes">
+                            <p style="text-align: center; margin-top: 0.5rem;">Task 3 completed</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    <!-- Citation部分（标题靠左） -->
+        <!-- Gentle Grasp 模块（无滚动版本） -->
+        <div style="border: 2px solid #2d2d2d; border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 1rem; width: 100%;">
+            <strong>Gentle Grasp for Delicate and Compliant Objects</strong>
+            <p style="text-align: justify; margin-top: 1rem; margin-left: 2rem; margin-right: 5.5rem; font-size: 0.95rem; padding: 0 0.5rem;">
+                The initial force prior provided by Pelican-VL 1.0 accelerates the convergence of the online adaptive controller.
+            </p>
+            <!-- 固定一行显示4个GIF，无滚动 -->
+            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; width: 100%;">
+                <!-- GIF1 -->
+                <div style="display: flex; flex-direction: column; align-items: center; width: 22%;">
+                    <img src="sponge_wipe.gif" alt="Sponge wipe" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <p style="font-weight: 500; margin-top: 0.5rem; text-align: center; font-size: 0.85rem;">Sponge wipe</p>
+                </div>
+                <!-- GIF2 -->
+                <div style="display: flex; flex-direction: column; align-items: center; width: 22%;">
+                    <img src="blue_balloon.gif" alt="Blue balloon" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <p style="font-weight: 500; margin-top: 0.5rem; text-align: center; font-size: 0.85rem;">Blue balloon</p>
+                </div>
+                <!-- GIF3 -->
+                <div style="display: flex; flex-direction: column; align-items: center; width: 22%;">
+                    <img src="chips.gif" alt="Chips" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <p style="font-weight: 500; margin-top: 0.5rem; text-align: center; font-size: 0.85rem;">Chips</p>
+                </div>
+                <!-- GIF4 -->
+                <div style="display: flex; flex-direction: column; align-items: center; width: 22%;">
+                    <img src="soft_labobo.gif" alt="Soft labobo" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <p style="font-weight: 500; margin-top: 0.5rem; text-align: center; font-size: 0.85rem;">Soft labobo</p>
+                </div>
+            </div>
+        </div>
+
+    <!-- Citation部分 -->
     <div class="citation-section">
         <h2>Citation</h2>
         <p class="citation-note">If you use any source codes or the datasets included in this toolkit in your work, please cite the following paper. The bibtex are listed below:</p>
@@ -697,32 +789,52 @@
     </div>
 
     <script>
-        // 图片滑动按钮功能
-        const scrollLeft = document.getElementById('scroll-left');
-        const scrollRight = document.getElementById('scroll-right');
-        const scrollContent = document.querySelector('.scroll-content');
+        // 视频切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有视频模块添加点击事件监听
+            document.querySelectorAll('.video-module').forEach(module => {
+                module.addEventListener('click', function(e) {
+                    // 检查点击的是否是带data-video属性的GIF
+                    if (e.target.tagName === 'IMG' && e.target.hasAttribute('data-video')) {
+                        const videoId = e.target.getAttribute('data-video');
+                        const targetVideoId = `video_${videoId}`;
+                        
+                        // 隐藏当前模块中所有视频
+                        this.querySelectorAll('.video-container').forEach(video => {
+                            video.style.display = 'none';
+                             video.style.height = '100%';
+                        });
+                        
+                        // 移除当前模块中所有GIF的高亮
+                        this.querySelectorAll('.gif-card img').forEach(img => {
+                            img.classList.remove('highlight');
+                        });
+                        
+                        // 显示目标视频并高亮当前GIF
+                        const targetVideo = this.querySelector(`#${targetVideoId}`);
+                        if (targetVideo) {
+                            targetVideo.style.display = 'block';
+                        }
+                        e.target.classList.add('highlight');
+                    }
+                });
+            });
 
-        scrollLeft.addEventListener('click', () => {
-            scrollContent.scrollBy({ left: -300, behavior: 'smooth' });
+            // 滚动按钮功能
+            const scrollLeft = document.getElementById('scroll-left');
+            const scrollRight = document.getElementById('scroll-right');
+            const scrollContent = document.querySelector('.scroll-content');
+
+            if (scrollLeft && scrollRight && scrollContent) {
+                scrollLeft.addEventListener('click', () => {
+                    scrollContent.scrollBy({ left: -300, behavior: 'smooth' });
+                });
+
+                scrollRight.addEventListener('click', () => {
+                    scrollContent.scrollBy({ left: 300, behavior: 'smooth' });
+                });
+            }
         });
-
-        scrollRight.addEventListener('click', () => {
-            scrollContent.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-
-        // 视频滑动按钮功能
-        const videoScrollLeft = document.getElementById('video-scroll-left');
-        const videoScrollRight = document.getElementById('video-scroll-right');
-        const videoScrollContent = document.querySelectorAll('.scroll-content')[1]; // 选择第二个滚动容器
-
-        videoScrollLeft.addEventListener('click', () => {
-            videoScrollContent.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-
-        videoScrollRight.addEventListener('click', () => {
-            videoScrollContent.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-
     </script>
 </body>
 </html>
