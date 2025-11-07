@@ -450,6 +450,54 @@
         .gentle-grasp-module .gif-card img:hover {
         transform: none;
         }
+
+        /* 核心修改：悬停显示人名+文字突出动画+人名加粗放大 */
+        .hover-trigger-area {
+            text-align: center;
+            display: inline-block;
+            margin: 0 auto;
+            position: relative; /* 用于定位下方人名 */
+        }
+        .affiliation {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease; /* 机构文字过渡动画 */
+        }
+        .affiliation span {
+            color: #801100;
+            font-weight: 600;
+        }
+        /* 悬停时机构文字突出显示 */
+        .hover-trigger-area:hover .affiliation {
+            font-size: 1.2rem; /* 机构文字放大 */
+            font-weight: 600; /* 机构文字加粗 */
+            color: #801100; /* 机构文字变色突出 */
+        }
+        .author-list {
+            display: none; /* 默认隐藏人名 */
+            text-align: center;
+            white-space: pre-line; /* 保持倒梯形格式 */
+            font-size: 1.4rem; /* 人名放大 */
+            font-weight: 700; /* 人名加粗 */
+            color: #801100; /* 人名突出色 */
+            margin-top: -2rem; /* 与机构文字保持间距 */
+            animation: fadeInScale 0.3s ease forwards; /* 人名弹出动画 */
+        }
+        /* 悬停时显示人名 */
+        .hover-trigger-area:hover .author-list {
+            display: block;
+        }
+        /* 文字弹出动画：淡入+轻微放大 */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -458,10 +506,21 @@
     <img src="Pelican_logo.png" alt="Pelican Logo" style="width: 60px; height: auto; vertical-align: middle; margin-right: 1rem;">
     Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence
     </h1>
-    <div class="affiliation">
-    <span style="color: #801100;">WFM System Group</span><br>
-    Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br>
+    <!-- 缩小悬停触发区域，仅包裹红框内的机构信息 -->
+    <div class="hover-trigger-area">
+      <div class="affiliation">
+        <span style="color: #801100;">WFM System Group</span><br>
+        Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br>
+      </div>
+      <div class="author-list">
+Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
+   Jiayu Hu, Hanzhe Shan, Zhenwei Niu, Zhaoyang Liu, Yue Zhao,
+      Junbo Qi, Qinfan Zhang, Dengjie Li, Yidong Wang,
+        Jiachen Luo, Yong Dai, Jian Tang,
+            Xiaozhu Ju
+      </div>
     </div>
+    <!-- 邮箱单独放置，不参与悬停切换 -->
     <div class="contact">
         {vito.dai, jason.ju}@x-humanoid.com
     </div>
