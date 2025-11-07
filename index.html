@@ -17,13 +17,16 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
         }
-        .affiliation {
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-        }
         .contact {
             margin: 1rem 0;
-            font-size: 1rem;
+            font-size: 1.2rem; /* 字体放大 */
+            font-weight: 400; /* 字体加粗 */
+            transition: color 0.2s ease; /* 颜色过渡效果 */
+        }
+
+        /* 当 hover 触发区域被悬停时，邮箱变色 */
+        .hover-trigger-area:hover .contact {
+            color: #801100; /* 与作者相同的红色 */
         }
         .button-group {
             display: flex;
@@ -460,17 +463,18 @@
         }
         .affiliation {
             margin: 0.5rem 0;
-            font-size: 1.1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
             transition: all 0.3s ease; /* 机构文字过渡动画 */
         }
         .affiliation span {
             color: #801100;
-            font-weight: 600;
+            font-weight: 700;
         }
         /* 悬停时机构文字突出显示 */
         .hover-trigger-area:hover .affiliation {
-            font-size: 1.2rem; /* 机构文字放大 */
-            font-weight: 600; /* 机构文字加粗 */
+            font-size: 1.5rem; /* 机构文字放大 */
+            font-weight: 800; /* 机构文字加粗 */
             color: #801100; /* 机构文字变色突出 */
         }
         .author-list {
@@ -478,7 +482,7 @@
             text-align: center;
             white-space: pre-line; /* 保持倒梯形格式 */
             font-size: 1.4rem; /* 人名放大 */
-            font-weight: 700; /* 人名加粗 */
+            font-weight: 600; /* 人名加粗 */
             color: #801100; /* 人名突出色 */
             margin-top: -2rem; /* 与机构文字保持间距 */
             animation: fadeInScale 0.3s ease forwards; /* 人名弹出动画 */
@@ -497,6 +501,13 @@
                 opacity: 1;
                 transform: scale(1);
             }
+         /* 雷达图区域文字说明样式 */
+       .radar-desc {
+             text-align: justify;
+             margin: 0 2rem 2rem; /* 上下留间距，左右对齐内容区 */
+             font-size: 0.95rem;
+             line-height: 1.6;
+           }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -509,7 +520,7 @@
     <!-- 缩小悬停触发区域，仅包裹红框内的机构信息 -->
     <div class="hover-trigger-area">
       <div class="affiliation">
-        <span style="color: #801100;">WFM System Group</span><br>
+        <a style="color: #801100;">WFM System Group</a><br>
         Beijing Innovation Center of Humanoid Robotics (X-Humanoid)<br>
       </div>
       <div class="author-list">
@@ -519,15 +530,16 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
         Jiachen Luo, Yong Dai, Jian Tang,
             Xiaozhu Ju
       </div>
-    </div>
-    <!-- 邮箱单独放置，不参与悬停切换 -->
-    <div class="contact">
+      <div class="contact">
         {vito.dai, jason.ju}@x-humanoid.com
+      </div>
     </div>
+
     <div class="button-group">
         <a href="https://arxiv.org/abs/2511.00108" class="btn" target="_blank"><i class="fas fa-file-pdf"></i> Arxiv</a>
         <a href="https://github.com/Open-X-Humanoid/pelican-vl" class="btn" target="_blank"><i class="fas fa-code"></i> Code</a>
-        <a href="#" class="btn" target="_blank"><i class="fas fa-desktop"></i> Demo</a>
+        <a href="https://huggingface.co/" class="btn" target="_blank"><i class="fas fa-database"></i> Huggingface</a>
+        <a href="" class="btn" target="_blank"><i class="fas fa-desktop"></i> Demo</a>
     </div>
 
     <!-- Abstract部分 -->
@@ -547,6 +559,9 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
     <!-- 雷达图部分 -->
     <div class="radar-chart-section">
         <h2>Benchmark Performance</h2>
+        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Performance comparison of Pelican-VL1.0. (Left) Comparison against models with ≤100B parameters. The shaded
+(pink) region highlights the performance gain over our baseline. (Right) Comparison against models with >100B parameters,
+including leading open-source and proprietary models, where our model also demonstrates SOTA performance.</p>
         <div class="chart-row">
             <div class="chart-item">
                 <img src="200B.jpg" alt="Comparison against models with ≤100B parameters" style="width: auto; height: 160%; max-width: 100%;">
@@ -567,23 +582,24 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
                 <p>Pelican-VL 1.0 vs models ≤100B</p>
             </div>
         </div>
+        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Overall performance comparison on benchmarks. Bold and underlined numbers indicate the best and second-best results, respectively. A dagger ($\dagger$) marks results differing from official reports or unusually low, possibly as official evaluations used model-specific prompts and the models are prompt-sensitive, while our results are obtained under a unified protocol for fair comparison. An asterisk (*) denotes results reported from official sources. Yellow cells mark Pelican-VL 1.0.</p> 
         <div class="tables-section">
             <div class="table-container">
-                <h3 class="table-title">Performance of Models with >100B Parameters</h3>
-                <img src="20251106-160357.jpg" alt="Performance of Models with >100B Parameters" class="table-image">
+                <img src="20251106-160348.jpg" alt="Performance of Models with >100B Parameters" class="table-image">
             </div>
             <div class="table-container">
-                <h3 class="table-title">Performance of Models with ≤100B Parameters</h3>
-                <img src="20251106-160348.jpg" alt="Performance of Models with ≤100B Parameters" class="table-image">
+                <img src="20251106-160357.jpg" alt="Performance of Models with ≤100B Parameters" class="table-image">
             </div>
         </div>
     </div>
+    
 
     <!-- 实验设置部分 -->
     <div class="experimental-setup-section">
         <h2>Performance Evolution Trajectory Across Metaloop Training</h2>
+        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">The performance curves of Pelican during the Metaloop process on two general benchmarks and four embodied benchmarks.</p>
         <img src="Evolution.png" alt="Experimental Evolution">
-        <p>Performance Evolution at Each Stage of DPPO</p>
+        <p ><strong>Performance Evolution at Each Stage of DPPO</strong></p>
     </div>
 
     <!-- 模型表现模块 -->
