@@ -491,6 +491,13 @@
         .hover-trigger-area:hover .author-list {
             display: block;
         }
+        /* 雷达图区域文字说明样式 */
+        .radar-desc {
+             text-align: justify;
+             margin: 0 2rem 2rem; /* 上下留间距，左右对齐内容区 */
+             font-size: 0.95rem;
+             line-height: 1.6;
+        }
         /* 文字弹出动画：淡入+轻微放大 */
         @keyframes fadeInScale {
             from {
@@ -501,20 +508,14 @@
                 opacity: 1;
                 transform: scale(1);
             }
-         /* 雷达图区域文字说明样式 */
-       .radar-desc {
-             text-align: justify;
-             margin: 0 2rem 2rem; /* 上下留间距，左右对齐内容区 */
-             font-size: 0.95rem;
-             line-height: 1.6;
-           }
+
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <h1>
-    <img src="Pelican_logo.png" alt="Pelican Logo" style="width: 60px; height: auto; vertical-align: middle; margin-right: 1rem;">
+    <img src="Pelican_logo.png" alt="Pelican Logo" style="width: 60px; height: auto; vertical-align: middle; margin-right: -1rem;">
     Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence
     </h1>
     <!-- 缩小悬停触发区域，仅包裹红框内的机构信息 -->
@@ -559,9 +560,7 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
     <!-- 雷达图部分 -->
     <div class="radar-chart-section">
         <h2>Benchmark Performance</h2>
-        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Performance comparison of Pelican-VL1.0. (Left) Comparison against models with ≤100B parameters. The shaded
-(pink) region highlights the performance gain over our baseline. (Right) Comparison against models with >100B parameters,
-including leading open-source and proprietary models, where our model also demonstrates SOTA performance.</p>
+        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL 1.0 achieves strong benchmark performance, showing clear gains over ≤100B models and achieving SOTA results even against >100B open-source. Across our nine-dimension embodied-intelligence taxonomy, Pelican-VL 1.0 attains a well-balanced skill distribution and excels in key dimensions.</p>
         <div class="chart-row">
             <div class="chart-item">
                 <img src="200B.jpg" alt="Comparison against models with ≤100B parameters" style="width: auto; height: 160%; max-width: 100%;">
@@ -582,7 +581,8 @@ including leading open-source and proprietary models, where our model also demon
                 <p>Pelican-VL 1.0 vs models ≤100B</p>
             </div>
         </div>
-        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Overall performance comparison on benchmarks. Bold and underlined numbers indicate the best and second-best results, respectively. A dagger ($\dagger$) marks results differing from official reports or unusually low, possibly as official evaluations used model-specific prompts and the models are prompt-sensitive, while our results are obtained under a unified protocol for fair comparison. An asterisk (*) denotes results reported from official sources. Yellow cells mark Pelican-VL 1.0.</p> 
+        <h2>Model Performance Overview</h2>
+        <p style="text-align: justify; margin-top: 1rem;margin-bottom: -2rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Overall performance comparison on benchmarks. Bold and underlined numbers indicate the best and second-best results, respectively. A dagger (✝) marks results differing from official reports or unusually low, possibly as official evaluations used model-specific prompts and the models are prompt-sensitive, while our results are obtained under a unified protocol for fair comparison. An asterisk (*) denotes results reported from official sources. Yellow cells mark Pelican-VL 1.0.</p> 
         <div class="tables-section">
             <div class="table-container">
                 <img src="20251106-160348.jpg" alt="Performance of Models with >100B Parameters" class="table-image">
@@ -597,7 +597,7 @@ including leading open-source and proprietary models, where our model also demon
     <!-- 实验设置部分 -->
     <div class="experimental-setup-section">
         <h2>Performance Evolution Trajectory Across Metaloop Training</h2>
-        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">The performance curves of Pelican during the Metaloop process on two general benchmarks and four embodied benchmarks.</p>
+        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">The performance curves show that DPPO preserves general capabilities without catastrophic forgetting while progressively enhancing embodied intelligence. Pelican-VL steadily improves across both general and embodied benchmarks through alternating RL-driven weakness discovery and SFT-based consolidation.</p>
         <img src="Evolution.png" alt="Experimental Evolution">
         <p ><strong>Performance Evolution at Each Stage of DPPO</strong></p>
     </div>
