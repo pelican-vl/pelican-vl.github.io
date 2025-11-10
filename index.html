@@ -548,6 +548,18 @@
 
         /* ======= 保持PC布局一致的移动端等比缩放方案 ======= */
 
+        html, body {
+            transform-origin: top left;
+        }
+
+        @media (max-width: 1000px) {
+            body {
+                width: 1000px; /* 假设你的网页在PC上是1000px布局宽 */
+                transform: scale(calc(100vw / 1000));
+                transform-origin: top left;
+                overflow-x: auto;
+            }
+        }
 
 
         /* ======== 自适应优化结束 ======== */
@@ -828,7 +840,7 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
                             <p style="text-align: center; margin-top: 0.5rem;">Task 1 completed</p>
                         </div>
                     </div>
-                    <div class="image-row" style="margin-top: -2rem;">
+                    <div class="image-row" style="margin-top: 0rem;">
                         <div class="image-item">
                             <img src="whiteboard_exported_image (7).png" alt="Go to the table">
                             <p style="text-align: center; margin-top: 0.5rem;">Go to the table</p>
