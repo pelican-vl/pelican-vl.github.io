@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pelican-VL 1.0</title>
     <style>
         body {
@@ -559,19 +559,22 @@
         }
         }
 
-        /* 多列图片在小屏幕改为单列 */
-        @media (max-width: 600px) {
-        .image-grid,
-        .image-row {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+        /* ======= 保持PC布局一致的移动端等比缩放方案 ======= */
+
+        html, body {
+            overflow-x: hidden;
+            transform-origin: top left;
         }
-        .image-grid img,
-        .image-row img {
-            width: 100%;
+
+        @media (max-width: 1000px) {
+            body {
+                width: 1000px; /* 假设你的网页在PC上是1000px布局宽 */
+                transform: scale(calc(100vw / 1000));
+                transform-origin: top left;
+                overflow-x: auto;
+            }
         }
-        }
+
 
         /* ======== 自适应优化结束 ======== */
             
