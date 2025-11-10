@@ -510,8 +510,135 @@
             }
 
         }
+        /* 移动设备适配：屏幕宽度 ≤ 768px */
+        @media (max-width: 768px) {
+            /* 基础样式调整 */
+            body {
+                padding: 1rem; /* 减小移动端内边距 */
+            }
+            h1 {
+                font-size: 1.8rem; /* 缩小标题字体 */
+            }
+            .affiliation {
+                font-size: 1.2rem; /* 缩小机构文字 */
+            }
+            .author-list {
+                font-size: 1.1rem; /* 缩小作者名字体 */
+                margin-top: -1rem; /* 调整间距 */
+            }
+            .contact {
+                font-size: 1rem; /* 缩小联系方式字体 */
+            }
+
+            /* 按钮组适配 */
+            .btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            /* 雷达图区域适配 */
+            .radar-chart-section h2,
+            .abstract-section h2,
+            .experimental-setup-section h2,
+            .model-performance-section h2,
+            .citation-section h2 {
+                font-size: 1.5rem; /* 缩小各模块标题 */
+            }
+            .chart-row {
+                flex-direction: column; /* 雷达图从横向排列改为纵向 */
+                gap: 1.5rem;
+            }
+            .chart-item {
+                width: 100%; /* 雷达图占满宽度 */
+            }
+            .radar-chart-section p,
+            .experimental-setup-section p,
+            .abstract-section p {
+                margin-left: 0.5rem !important;
+                margin-right: 0.5rem !important;
+                font-size: 0.9rem;
+            }
+
+            /* 表格适配 */
+            .table-image {
+                max-width: 100%; /* 表格占满宽度 */
+            }
+
+            /* 滚动图片区域适配 */
+            .scroll-item {
+                min-width: 70%; /* 移动端滚动项宽度增大，减少滚动次数 */
+            }
+            .scroll-content {
+                gap: 1rem; /* 减小间距 */
+            }
+
+            /* 长任务流程适配 */
+            .task-row {
+                flex-direction: column; /* 流程文字与图片纵向排列 */
+            }
+            .left-flow {
+                width: 100%; /* 流程文字占满宽度 */
+                margin-right: 0;
+                margin-bottom: 1rem;
+                gap: 1.5rem;
+            }
+            .flow-ellipse {
+                min-width: 120px; /* 缩小椭圆框宽度 */
+                padding: 0.4rem 0.8rem;
+            }
+            .image-row {
+                flex-wrap: wrap; /* 图片行换行显示 */
+                gap: 0.5rem;
+            }
+            .image-item {
+                min-width: 45%; /* 每行显示2张图片 */
+            }
+            .image-row p {
+                font-size: 0.9rem;
+                margin-top: 1rem !important;
+            }
+
+            /* 视频模块适配 */
+            .gif-card {
+                min-width: 45%; /* 移动端GIF每行显示2个 */
+            }
+            .gif-card p {
+                font-size: 0.75rem;
+            }
+
+            /* Gentle Grasp 模块适配 */
+            .gentle-grasp-module .gif-grid {
+                flex-wrap: wrap; /* 动图换行 */
+            }
+            .gentle-grasp-module .gif-card {
+                width: 48%; /* 每行显示2个动图 */
+                margin-bottom: 1rem;
+            }
+
+            /* 引用部分适配 */
+            .citation-section h2 {
+                text-align: center; /* 引用标题居中 */
+            }
+            .bibtex-box {
+                padding: 1rem;
+                font-size: 0.85rem; /* 缩小bibtex字体 */
+            }
+        }
+
+        /* 平板适配：屏幕宽度 769px ~ 1024px */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .chart-item {
+                width: 48%; /* 平板雷达图仍横向排列，宽度微调 */
+            }
+            .image-item {
+                min-width: 30%; /* 平板每行显示3张图片 */
+            }
+            .gif-card {
+                min-width: 30%; /* 平板GIF每行显示3个 */
+            }
+        }        
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <h1>
@@ -538,10 +665,22 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
 
     <div class="button-group">
         <a href="https://arxiv.org/abs/2511.00108" class="btn" target="_blank"><i class="fas fa-file-pdf"></i> Arxiv</a>
-        <a href="https://github.com/Open-X-Humanoid/pelican-vl" class="btn" target="_blank"><i class="fas fa-code"></i> Code</a>
-        <a href="https://huggingface.co/" class="btn" target="_blank"><i class="fas fa-database"></i> Huggingface</a>
-        <a href="" class="btn" target="_blank"><i class="fas fa-desktop"></i> Demo</a>
+        <a href="https://github.com/Open-X-Humanoid/pelican-vl" class="btn" target="_blank"><i class="fab fa-github"></i> Code</a>
+        <a href="https://huggingface.co/X-Humanoid/pelican-vl/tree/main" class="btn" target="_blank">
+        <img src="hf-logo.svg" alt="Hugging Face Logo" style="width: 18px; height: auto; margin-right: 0.5rem;">huggingface
+        </a>
+        <a href="https://modelscope.cn/organization/X-Humanoid?tab=model" class="btn" target="_blank">
+        <!-- 添加 filter: invert(1) 实现反色为白色 -->
+        <img src="msc-logo.svg"
+            alt="ModelScope Logo"
+            style="width: 24px; height: auto; margin-right: 0.5rem; filter: invert(1);">
+        ModelScope
+        </a>
     </div>
+
+
+
+
 
     <!-- Abstract部分 -->
     <div class="abstract-section">
@@ -560,7 +699,7 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
     <!-- 雷达图部分 -->
     <div class="radar-chart-section">
         <h2>Benchmark Performance</h2>
-        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL 1.0 achieves strong benchmark performance, showing clear gains over ≤100B models and achieving SOTA results even against >100B open-source. Across our nine-dimension embodied-intelligence taxonomy, Pelican-VL 1.0 attains a well-balanced skill distribution and excels in key dimensions.</p>
+        <p style="text-align: justify; margin-top: 1rem;margin-left:2rem; margin-right:5.5rem;font-size: 0.95rem; padding: 0 0.5rem;">Pelican-VL 1.0 achieves strong benchmark performance, showing clear gains over ≤100B models and achieving SOTA results even against >100B models. Across our nine-dimension embodied-intelligence taxonomy, Pelican-VL 1.0 attains a well-balanced skill distribution and excels in key dimensions.</p>
         <div class="chart-row">
             <div class="chart-item">
                 <img src="200B.jpg" alt="Comparison against models with ≤100B parameters" style="width: auto; height: 160%; max-width: 100%;">
@@ -852,7 +991,7 @@ Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding
         <div class="bibtex-box">
 @article{Pelican-VL-1.0,
   title={Pelican-VL 1.0: A Foundation Brain Model for Embodied Intelligence},
-  author={Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding, Jiayu Hu, Hanzhe Shan, Zhenwei Niu, Zhaoyang Liu, Yue Zhao, Junbo Qi, Qinfan Zhang, Dengjie Li, Yidong Wang, Jiachen Luo, Yong Dai, Jian Tang, Xiaozhu Ju},
+  author={Yi Zhang, Che Liu, Xiancong Ren, Hanchu Ni, Shuai Zhang, Zeyuan Ding, Jiayu Hu, Hanzhe Shan, Zhenwei Niu, Zhaoyang Liu, Yue Zhao, Junbo Qi, Qinfan Zhang, Dengjie Li, Yidong Wang, Jiachen Luo, Yong Dai, Jian Tang and Xiaozhu Ju},
   journal={arXiv preprint arXiv:2511.00108},
   year={2025}
 }}
